@@ -66,7 +66,7 @@ func OpenDialog(owner walk.Form, ifeo *Game) (int, error) {
 	var ExecutableLE, DelayLE *walk.LineEdit
 	var acceptPB, cancelPB *walk.PushButton
 	var ignoreCB, passthroughCB *walk.CheckBox
-	var CPUArrayComposite, StartScriptsComposite *walk.Composite
+	var CPUArrayComposite, StartScriptsComposite, EndScriptsComposite *walk.Composite
 	var cpuPriorityClassCB, ioPriorityCB, pagePriorityCB *walk.ComboBox
 
 	return Dialog{
@@ -182,6 +182,7 @@ func OpenDialog(owner walk.Form, ifeo *Game) (int, error) {
 												passthroughCB.SetEnabled(false)
 												CPUArrayComposite.SetEnabled(false)
 												StartScriptsComposite.SetEnabled(false)
+												EndScriptsComposite.SetEnabled(false)
 											} else {
 												ifeo.Debugger = ""
 
@@ -192,6 +193,7 @@ func OpenDialog(owner walk.Form, ifeo *Game) (int, error) {
 												passthroughCB.SetEnabled(true)
 												CPUArrayComposite.SetEnabled(true)
 												StartScriptsComposite.SetEnabled(true)
+												EndScriptsComposite.SetEnabled(true)
 											}
 											checkAdminRights(ifeo)
 										},
@@ -228,6 +230,7 @@ func OpenDialog(owner walk.Form, ifeo *Game) (int, error) {
 			},
 
 			Composite{
+				AssignTo: &StartScriptsComposite,
 				Layout: Grid{
 					Columns:     3,
 					MarginsZero: true,
@@ -288,6 +291,7 @@ func OpenDialog(owner walk.Form, ifeo *Game) (int, error) {
 			},
 
 			Composite{
+				AssignTo: &EndScriptsComposite,
 				Layout: Grid{
 					Columns:     3,
 					MarginsZero: true,
